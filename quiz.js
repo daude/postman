@@ -34,7 +34,8 @@ app.post('/quiz', function(req, res){
     });
 });
 
-/*// select a record
+
+// select a record
 app.get('/quiz/:id', function(req, res){
     var id = req.params.id;
     var query = {
@@ -45,7 +46,8 @@ app.get('/quiz/:id', function(req, res){
         // doc.answer = JSON.stringify(doc.answer);
         res.json(doc);
     })
-})*/
+})
+
 
 app.get('/answers', function(req, res){
     //console.log('Answers', answers)
@@ -61,7 +63,7 @@ app.post('/answers', function(req, res){
     });
 });
 // select a record
-/*app.get('/answers/', function(req, res){
+app.get('/answers/:id', function(req, res){
     var id = req.params.id;
     var query = {
         _id: mongojs.ObjectId(id)
@@ -71,7 +73,22 @@ app.post('/answers', function(req, res){
         // doc.answer = JSON.stringify(doc.answer);
         res.json(doc);
     })
-})*/
+})
+
+app.get('/usernames', function(req, res){
+    //console.log('Answers', answers)
+    db.usernames.find(function(err, doc){
+        res.json(doc);
+    });
+});
+
+app.post('/usernames', function(req, res){
+    console.log('added record: '+req.body.name);
+    db.usernames.insert(req.body, function(err, doc){
+        res.json(doc);
+    });
+});
+
 
 // add records
 
