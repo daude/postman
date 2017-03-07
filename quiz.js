@@ -89,6 +89,20 @@ app.post('/usernames', function(req, res){
     });
 });
 
+app.get('/registration', function(req, res){
+    //console.log('Answers', answers)
+    db.registration.find(function(err, doc){
+        res.json(doc);
+    });
+});
+
+app.post('/registration', function(req, res){
+    console.log('added record: '+req.body.name);
+    db.registration.insert(req.body, function(err, doc){
+        res.json(doc);
+    });
+});
+
 
 // add records
 
