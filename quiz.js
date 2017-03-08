@@ -75,21 +75,21 @@ app.get('/answers/:id', function(req, res){
     })
 })
 
-app.get('/usernames', function(req, res){
+app.get('/users', function(req, res){
     //console.log('Answers', answers)
-    db.usernames.find(function(err, doc){
+    db.users.find(function(err, doc){
         res.json(doc);
     });
 });
 
-app.post('/usernames', function(req, res){
+app.post('/users', function(req, res){
     console.log('added record: '+req.body.name);
-    db.usernames.insert(req.body, function(err, doc){
+    db.users.insert(req.body, function(err, doc){
         res.json(doc);
     });
 });
 
-app.get('/registration', function(req, res){
+/*app.get('/registration', function(req, res){
     //console.log('Answers', answers)
     db.registration.find(function(err, doc){
         res.json(doc);
@@ -102,7 +102,7 @@ app.post('/registration', function(req, res){
         res.json(doc);
     });
 });
-
+*/
 
 // add records
 
