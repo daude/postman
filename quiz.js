@@ -1,7 +1,8 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongojs = require('mongojs');
-
+//var ObjectId = require('mongodb').ObjectId;
+//objId = new ObjectId(idString)
 // create an app
 var app = express();
 
@@ -88,6 +89,37 @@ app.post('/users', function(req, res){
         res.json(doc);
     });
 });
+
+app.get('/users/:name', function(req, res){
+    var name = req.params.name;
+    console.log('name------------>', req.params.name);
+    var value = req.params.value;
+    var query = {name};
+    query[name] = value;
+    /*var query = {
+        name: mongojs.ObjectId.toString(name)
+    };*/
+    db.users.findOne(query, function(err, doc){
+        console.log('doc', doc)
+        // doc.answer = JSON.stringify(doc.answer);
+        res.json(doc);
+    })
+})
+
+/*app.get('/users/:name', function(req, res){
+    //db = req.db;
+    var name = req.params.name;
+    //console.log(name);
+    var query = {
+        _id: mongojs.ObjectId(name)
+    };
+    db.users.findOne(query, function(err, doc){
+        console.log('doc', doc)
+        //doc.name = JSON.stringify(doc.name);
+        res.json(doc);
+    })
+})*/
+
 
 /*app.get('/registration', function(req, res){
     //console.log('Answers', answers)
